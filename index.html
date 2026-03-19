@@ -19,5 +19,16 @@ async function subscribe(){
  window.location=data.url;
 }
 </script>
+ <script>
+async function subscribe(){
+  const res = await fetch("https://zahav-land-pro-backend.onrender.com/api/billing/subscribe", {
+    method: "POST"
+  });
+
+  const data = await res.json();
+
+  window.location = data.url;
+}
+</script>
 </body>
 </html>
