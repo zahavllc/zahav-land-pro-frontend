@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body style="background:#020617;color:white">
+<h1>Dashboard</h1>
+<button onclick="loadDeals()">Load Deals</button>
+<div id="deals"></div>
+<script>
+const API="https://zahav-land-pro-api.onrender.com";
+async function loadDeals(){
+ const res=await fetch(API+"/api/deals/feed");
+ const data=await res.json();
+ document.getElementById("deals").innerHTML=
+ data.map(d=>"<p>"+d.address+" $"+d.price+"</p>").join("");
+}
+</script>
+</body>
+</html>
