@@ -1,30 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Zahav Land Pro</title>
-<style>
-body {background:#020617;color:white;text-align:center;padding:100px;font-family:Arial;}
-button {padding:15px;border:none;border-radius:10px;background:#22c55e;}
-</style>
-</head>
-<body>
-<h1>Zahav Land Pro</h1>
-<p>Find land deals nationwide</p>
-<button onclick="subscribe()">Start</button>
 <script>
-const API="https://zahav-land-pro-api.onrender.com";
 async function subscribe(){
- const res=await fetch(API+"/api/billing/subscribe",{method:"POST"});
- const data=await res.json();
- window.location=data.url;
+  try {
+    const res = await fetch("https://zahav-land-pro-backend.onrender.com/api/billing/subscribe", {
+      method: "POST"
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if(data.url){
+      window.location = data.url;
+    } else {
+      alert("No checkout URL returned");
+    }
+
+  } catch(err){
+    console.error(err);
+    alert("Error connecting to backend");
+  }
 }
 </script>
-
-
-  const data = await res.json();
-
-  window.location = data.url;
-}
-</script>
-</body>
-</html>
